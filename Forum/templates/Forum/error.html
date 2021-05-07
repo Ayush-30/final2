@@ -80,147 +80,99 @@
                  <button class="btn btn-secondary btn-width-lg" onclick="document.getElementById('Simquer').style.display='block'" style=";font-size:18px">
                    Similar query</button>
                      </div>
-                <div id="Simquer" class="modal1">
-                    <span onclick="document.getElementById('Simquer').style.display='none'" class="close1" title="Close Modal">&times;</span>
-                        <div class="model-content">
-                            <ul class="nav nav-tabs" id="tabContent">
-                                <li>
-                                    <h3 style="text-align:center;">Similar question</h3>
-                                </li>
-                            </ul>
-                            {% for b in q %}
-                            <ul style="list-style-type:none;text-align: center;">
-                                <li><a href="{% url 'viewquestion' b.id %}" class="topictitle" style="font-size: 20px;">{{ b.Title }}</a></li>
-                            {% endfor %}
+                            <div id="Simquer" class="modal1">
+                                <span onclick="document.getElementById('Simquer').style.display='none'" class="close1" title="Close Modal">&times;</span>
+                                    <div class="model-content">
+                                        <ul class="nav nav-tabs" id="tabContent">
+                                            <li>
+                                                <h3 style="text-align:center;">Similar question</h3>
+                                            </li>
+                                        </ul>
+                                        {% for b in q %}
+                                        <ul style="list-style-type:none;text-align: center;">
+                                            <li><a href="{% url 'viewquestion' b.id %}" class="topictitle" style="font-size: 20px;">{{ b.Title }}</a></li>
+                                        {% endfor %}
 
-                            <ul style="list-style-type:none;text-align: center;">
-                                <li><a href="#">1</a></li>
-                                <li><a href="profile.html">2</a></li>
-                                <li><a href="#">3</a></li>
-                                <li><a href="#">4 </a></li>
-                                <li><a href="#">5</a></li>
-                                <li><a href="#">6 </a></li>
-                             </ul>
-                             </div>
-                        </div>
-                             <hr class="style1">
-                            <div class="form-group">
-                                <textarea name="message" class="form-control" rows="5" style="width:100%" placeholder="Comment Here"></textarea>
-                            </div>
-                         <div class="col-sm-12 text-left">
-                             <br>
-                                <a href="#" class="btn btn-secondary btn-width-lg">Comment</a>
-                             </div>
-                        <hr class="style1">
+
+                                         </div>
+                                    </div>
 
 
 
 
-<!--                    <ul class="posts-buttons">																																			<li>-->
-<!--                            <li>-->
-<!--                                <a href="#"><i class="fa fa-pencil-square-o" style="font-size: 29px;"></i>-->
-<!--                                    <span style="font-size: 12px;">Edit</span></a>-->
-<!--                            </li>-->
-<!--                            </ul>-->
-                    <hr class="divider">
 
-                </div>
-            <div class="col-separator"></div>
-                        <div class="tt-item">
-                            <div class="tt-single-topic">
-                               <div class="tt-item-header pt-noborder">
-                                   <div class="tt-item-info info-top">
-                                       <div class="tt-avatar-icon">
-                                           <div class="avatar">
-                                        <img src="img/avatar.jpg" alt="" style="width: 40px;height: 40px;">
+            <!--                    <ul class="posts-buttons">																																			<li>-->
+            <!--                            <li>-->
+            <!--                                <a href="#"><i class="fa fa-pencil-square-o" style="font-size: 29px;"></i>-->
+            <!--                                    <span style="font-size: 12px;">Edit</span></a>-->
+            <!--                            </li>-->
+            <!--                            </ul>-->
+                               <hr class="style1">
+                                        <form method="POST">
+                                            <div class="form-group">
+                                                {% csrf_token %}
+                                                <textarea name="answer_text" class="form-control" rows="5" style="width:100%" placeholder="Comment Here"></textarea>
                                             </div>
-                                       </div>
-                                       <div class="tt-avatar-title">
-                                          <a href="#">Username</a>
-                                       </div>
+                                            <div class="col-sm-12 text-left">
+                                                <br>
+                                                <p align="right">
+                                                    <button type="submit" class="btn btn-secondary btn-width-lg">Comment</a></button>
+                                                </p>
+                                            </div>
+                                        </form>
+                                        <div class="col-separator"></div>
+        <div class="tt-item">
+            {% for a in answers %}
+                <div class="tt-single-topic bg-light d-flex justify-content-between">
+                    <div class="tt-item-header pt-noborder">
+                        <div class="tt-item-info info-top">
+                            <div class="tt-avatar-icon">
+                                <div class="avatar">
+                                    {% if a.posted_by.profile.user_image.url %}
+                                            <img src="{{ a.posted_by.profile.user_image.url }}" alt="User Name" style="width:30%">
+                                    {% else %}
+                                            <img src="{% static 'img/default.jpg' %}" alt="User Name" style="width:30%">
+                                    {% endif %}
+                                </div>
+                            </div>
+                            <div class="tt-item-description">
+                                {{ a.answer_text }}
+                            </div>
+                            <div class="tt-avatar-title">
+                                <a href="{% url 'profile' %}">{{ a.posted_by }}</a>
+                            </div>
 
-                                       <a href="#" class="tt-info-time">
-                                           <i class="tt-icon"><svg><use xlink:href="#icon-time"></use></svg></i>6 Jan,2019
-                                       </a>
-
-
-                                   </div>
-                               </div>
-                               <div class="tt-item-description">
-                                   Comments are gonna be here!!!
-                               </div>
-                               <div class="tt-item-info info-bottom">
-                                   <a href="#" class="tt-icon-btn">
-                                       <i class="tt-icon"><svg><use xlink:href="#icon-like"></use></svg></i>
-                                       <span class="tt-text">671</span>
-                                   </a>
-                                   <a href="#" class="tt-icon-btn">
-                                        <i class="tt-icon"><svg><use xlink:href="#icon-dislike"></use></svg></i>
-                                       <span class="tt-text">39</span>
-                                   </a>
-
-                                   <div class="col-separator"></div>
-                                   <a href="#" class="tt-icon-btn">
-                                    <i class="tt-icon"><svg><use xlink:href="#icon-pencil"></use></svg></i>
-                                   </a>
-                                   <a href="#" class="tt-icon-btn">
-                                    <i class="tt-icon"><svg><use xlink:href="#icon-cancel"></use></svg></i>
-                                   </a>
-                               </div>
-                           </div>
-                           <hr class="style1">
-                       </div>
-                       <hr class="divider">
-                        <div class="tt-item">
-                            <div class="tt-single-topic">
-                               <div class="tt-item-header pt-noborder">
-                                   <div class="tt-item-info info-top">
-                                       <div class="tt-avatar-icon">
-                                        <div class="avatar">
-                                            <img src="img/avatar.jpg" alt="" style="width: 40px;height: 40px;">
-                                                </div>
-                                       </div>
-                                       <div class="tt-avatar-title">
-                                          <a href="#">tesla02</a>
-                                       </div>
-
-                                       <a href="#" class="tt-info-time">
-                                           <i class="tt-icon"><svg><use xlink:href="#icon-time"></use></svg></i>6 Jan,2019
-                                       </a>
-
-
-                                   </div>
-                               </div>
-                               <div class="tt-item-description">
-                                   Finally!<br>
-
-                               </div>
-                               <div class="tt-item-info info-bottom">
-                                   <a href="#" class="tt-icon-btn">
-                                       <i class="tt-icon"><svg><use xlink:href="#icon-like"></use></svg></i>
-                                       <span class="tt-text">671</span>
-                                   </a>
-                                   <a href="#" class="tt-icon-btn">
-                                        <i class="tt-icon"><svg><use xlink:href="#icon-dislike"></use></svg></i>
-                                       <span class="tt-text">39</span>
-                                   </a>
-
-                                   <div class="col-separator"></div>
-                                   <a href="#" class="tt-icon-btn">
-                                    <i class="tt-icon"><svg><use xlink:href="#icon-pencil"></use></svg></i>
-                                   </a>
-                                   <a href="#" class="tt-icon-btn">
-                                    <i class="tt-icon"><svg><use xlink:href="#icon-cancel"></use></svg></i>
-                                   </a>
-                               </div>
-                           </div>
-                           <hr class="style1">
-                       </div>
-                       <div class="pagination">
-                        1 topic &bull; Page <strong>1</strong> of <strong>1</strong>
-                         </div>
-                       </div>
+                            <a href="#" class="tt-info-time">
+                                <i class="tt-icon"><svg><use xlink:href="#icon-time"></use></svg></i>{{ a.date_posted|timesince }} ago
+                            </a>
+                        </div>
                     </div>
+
+
+                    <div class="tt-item-info info-bottom">
+                        <a href="{% url 'like_post' a.answer_id %}" class="tt-icon-btn">
+                            <i class="tt-icon"><svg><use xlink:href="#icon-like"></use></svg></i>
+                            <span class="tt-text">{{ a.liked.count }}</span>
+                        </a>
+<!--                        <a href="#" class="tt-icon-btn">-->
+<!--                            <i class="tt-icon"><svg><use xlink:href="#icon-dislike"></use></svg></i>-->
+<!--                            <span class="tt-text">39</span>-->
+<!--                        </a>-->
+<!--                    <div class="col-separator"></div>-->
+<!--                    <a href="#" class="tt-icon-btn">-->
+<!--                        <i class="tt-icon"><svg><use xlink:href="#icon-pencil"></use></svg></i>-->
+<!--                    </a>-->
+                        <a href="{% url 'answerdelete' a.answer_id %}" class="tt-icon-btn">
+                            <i class="tt-icon"><svg><use xlink:href="#icon-cancel"></use></svg></i>
+                        </a>
+                    </div>
+                </div>
+                <hr class="style1">
+            {% endfor %}
+
+
+                            </div>
+
 <script src="{% static 'js/bundle.js'%}"></script>
 <svg width="0" height="0" class="hidden">
 	 <symbol aria-hidden="true" data-prefix="fab" data-icon="facebook-f" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 264 512" id="facebook-f-brands">

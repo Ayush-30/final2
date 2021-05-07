@@ -7,10 +7,10 @@ from .views import *
 
 
 urlpatterns = [
-    path('library/', library, name='library'),
+    path('', library, name='library'),
     path('navbar/', library, name='navbar'),
     path('comp1/', library, name='comp1'),
-path('error/', library, name='error'),
+    path('error/', error, name='error'),
 
 
 ]

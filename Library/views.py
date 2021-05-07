@@ -8,4 +8,4 @@ def navbar(request):
 def comp1(request):
     return render(request, 'library/contenttrial2.html')
 def error(request):
-    return render(request, 'library/guideline.html')
+    return render(request, 'library/error404.html')

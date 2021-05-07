@@ -167,7 +167,7 @@ def viewquestion(request, question_id):
         context = {'question': question, 'q': data, 'answers': answers}
         print(context)
 
-    return render(request, "forum/test2.html", context)
+    return render(request, "forum/error.html", context)
 
 
 
