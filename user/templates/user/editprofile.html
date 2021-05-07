@@ -1,0 +1,108 @@
+{% extends "forum/base.html" %}
+{% block content %}
+{% load static %}
+{% load crispy_forms_tags %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <title>Add Topic</title>
+ <link rel="icon" type="image/png" href="{% static 'img/geekhub.png' %}" />
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="{% static 'css/style1.css' %}">
+     <link rel="stylesheet" href="{% static 'css/style.css' %}">
+  <script src="{% static 'js/bootstrap.min.js' %}"></script>
+  <script src="{% static 'js/jquery.min.js' %}"></script>
+  <link href="{% static 'css/stylesheet.css' %}" rel="stylesheet" type="text/css" media="screen, projection" />
+  <link href="{% static 'css/colours.css' %}" rel="stylesheet" type="text/css" media="screen, projection" />
+
+  <style>
+    /* Remove the navbar's default margin-bottom and rounded borders */
+    .navbar {
+      margin-bottom: 0;
+      border-radius: 0;
+    }
+
+    /* Set height of the grid so .sidenav can be 100% (adjust as needed) */
+    .row.content {height: 450px}
+
+    /* Set gray background color and 100% height */
+    .sidenav {
+      padding-top: 20px;
+      background-color: #f1f1f1;
+      height: 100%;
+    }
+
+    /* Set black background color, white text and some padding */
+    footer {
+      background-color: #555;
+      color: white;
+      padding: 15px;
+    }
+
+    /* On small screens, set height to 'auto' for sidenav and grid */
+    @media screen and (max-width: 767px) {
+      .sidenav {
+        height: auto;
+        padding: 15px;
+      }
+      .row.content {height:auto;}
+    }
+    .brand {
+    max-height: 40px;
+    max-width: 30%;
+    overflow: visible;
+    padding-top: 0;
+    padding-bottom: 0;
+    }
+    .centerlog {
+
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    width: auto;
+    }
+  </style>
+</head>
+<body>
+
+<br>
+<div class="post">
+    <form action="" class="form newtopic" method="POST" enctype="multipart/form-data" id="At">
+        <div class="topwrap">
+        </div>
+
+        <p style="text-align: center;">
+            Update Profile
+            {% csrf_token %}
+            <fieldset class="form-group">
+        <br>
+                          <legend class="border-bottom mb-4">Profile Info</legend>
+                            <label for="username"><b>Username</b></label>
+                           {{ u_form.username }}
+                             <label for="email"><b>Email</b></label>
+                            {{ u_form.email }}
+        <br>
+        <br>
+
+                          {{ p_form }}
+            </fieldset>
+        </p>
+<!--                <a href="{% url 'profile' %}">-->
+        <button type="submit" class="button font-icon" style="width:40%;left: 27%;" onClick="location.href='{% url 'profile' %}'">Update</button>
+<!--                </a>-->
+<!--                onClick="location.href='https://www.google.com'">Update</button>-->
+
+    </form>
+
+    <div id="site-footer-area" class="site-footer-forum">
+        <div class="chunk">
+            <div id="foot-copyright" style="text-align: center;">Geekhub</div>
+        </div>
+    </div>
+{% endblock content %}
+
+</body>
+</html>
+
+
